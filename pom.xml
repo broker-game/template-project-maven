@@ -1,164 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.ev3dev-lang-java</groupId>
-  <artifactId>template-project-maven</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+    <groupId>com.github.ev3dev-lang-java</groupId>
+    <artifactId>template-project-maven</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
 
-  <name>template-project-maven</name>
+    <name>template-project-maven</name>
 
-  <developers>
-    <developer>
-      <id>jabrena</id>
-      <name>Juan Antonio Breña Moral</name>
-      <email>bren@juanantonio.info</email>
-    </developer>
-  </developers>
+    <developers>
+        <developer>
+            <id>jabrena</id>
+            <name>Juan Antonio Breña Moral</name>
+            <email>bren@juanantonio.info</email>
+        </developer>
+    </developers>
 
-  <properties>
-    <java.version>11</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <properties>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <slf4j-simple.version>1.7.25</slf4j-simple.version>
-    <ev3dev-lang-java.version>2.6.2-SNAPSHOT</ev3dev-lang-java.version>
+        <slf4j-simple.version>1.7.25</slf4j-simple.version>
+        <ev3dev-lang-java.version>2.6.2-SNAPSHOT</ev3dev-lang-java.version>
 
-    <!-- EV3 Parameters -->
-    <ev3.host>192.168.1.151</ev3.host>
-    <ev3.user>robot</ev3.user>
-    <ev3.password>maker</ev3.password>
+        <!-- EV3 Parameters -->
+        <ev3.host>192.168.1.151</ev3.host>
+        <ev3.user>robot</ev3.user>
+        <ev3.password>maker</ev3.password>
 
-  </properties>
+        <!-- JVMFLAGS -->
+        <jvm.flags>-Djavax.net.debug=all</jvm.flags>
+    </properties>
 
-  <repositories>
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-    <repository>
-      <id>central</id>
-      <name>Central Repository</name>
-      <url>https://repo.maven.apache.org/maven2</url>
-      <layout>default</layout>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>${slf4j-simple.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.ev3dev-lang-java</groupId>
-      <artifactId>ev3dev-lang-java</artifactId>
-      <version>${ev3dev-lang-java.version}</version>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-simple.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ev3dev-lang-java</groupId>
+            <artifactId>ev3dev-lang-java</artifactId>
+            <version>${ev3dev-lang-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.broker-game</groupId>
+            <artifactId>broker-client</artifactId>
+            <version>0.2.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
-  <build>
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
-          <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-            <encoding>${project.build.sourceEncoding}</encoding>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>2.4</version>
-          <configuration>
-            <archive>
-              <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.1.1</version>
-
-          <configuration>
-            <descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
-
-            <archive>
-              <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-            </archive>
-          </configuration>
-
-          <executions>
-            <execution>
-              <id>make-assembly</id>
-              <phase>package</phase>
-              <goals>
-                <goal>single</goal>
-              </goals>
-            </execution>
-          </executions>
-
-        </plugin>
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-      </plugins>
-  </build>
-
-  <!-- Deploy on EV3 -->
-  <profiles>
-    <profile>
-      <id>brick</id>
-
-      <build>
+    <build>
         <plugins>
-
-          <plugin>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.6.0</version>
-            <groupId>org.codehaus.mojo</groupId>
-            <executions>
-              <execution><!-- Run our version calculation script -->
-                <id>script</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
-                  <executable>bash</executable>
-                  <commandlineArgs>./scripts/deploy.sh ${ev3.host} ${ev3.user} ${ev3.password} ${project.build.finalName}</commandlineArgs>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
-              </execution>
-            </executions>
-          </plugin>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
 
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
         </plugins>
-      </build>
-    </profile>
-  </profiles>
+    </build>
+
+    <!-- Deploy on EV3 -->
+    <profiles>
+        <profile>
+            <id>brick</id>
+
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <executions>
+                            <execution><!-- Run our version calculation script -->
+                                <id>script</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>bash</executable>
+                                    <commandlineArgs>./scripts/deploy.sh ${ev3.host} ${ev3.user} ${ev3.password}
+                                        ${project.build.finalName} ${jvm.flags}
+                                    </commandlineArgs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
