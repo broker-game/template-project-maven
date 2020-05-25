@@ -3,6 +3,8 @@ package example;
 import com.github.broker.BrokerClient;
 import com.github.broker.BrokerClientConfig;
 
+import java.util.stream.IntStream;
+
 public class PingApp {
 
     private static class Message {
@@ -20,7 +22,8 @@ public class PingApp {
         final String EVENT = "PING";
         final Message MESSAGE = new Message();
 
-        defaultBrokerClient.produce(EVENT, MESSAGE);
+        IntStream.rangeClosed(1, 5)
+            .forEach(x -> defaultBrokerClient.produce(EVENT, MESSAGE));
 
         defaultBrokerClient.close();
     }

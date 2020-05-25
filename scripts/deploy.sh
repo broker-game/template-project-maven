@@ -16,6 +16,7 @@ JVMFLAGS=$5
 #echo $EV3_PASSWORD
 #echo $ARTIFACT
 echo $JVMFLAGS
+echo
 
 function deploy() {
 
@@ -29,10 +30,10 @@ function deploy() {
 function run() {
 
     echo "Run artifact"
-    echo "sshpass -p $EV3_PASSWORD ssh -p 22 $EV3_USER@$EV3_HOST java -jar $ARTIFACT-jar-with-dependencies.jar $JVMFLAGS"
+    echo "sshpass -p $EV3_PASSWORD ssh -p 22 $EV3_USER@$EV3_HOST time java -jar $ARTIFACT-jar-with-dependencies.jar"
     sshpass -p $EV3_PASSWORD \
         ssh -p 22 \
-        $EV3_USER@$EV3_HOST "java -jar $ARTIFACT-jar-with-dependencies.jar"
+        $EV3_USER@$EV3_HOST "time java -jar $ARTIFACT-jar-with-dependencies.jar"
 }
 
 deploy

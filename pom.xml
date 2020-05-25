@@ -32,7 +32,7 @@
         <ev3.password>maker</ev3.password>
 
         <!-- JVMFLAGS -->
-        <jvm.flags>-Djavax.net.debug=all</jvm.flags>
+        <jvm.flags></jvm.flags>
     </properties>
 
     <repositories>
